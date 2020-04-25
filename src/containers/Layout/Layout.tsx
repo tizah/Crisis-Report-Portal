@@ -1,5 +1,6 @@
 import React from "react";
-import { Layout, Menu } from "antd";
+import { Switch, Route, Link } from "react-router-dom";
+import { Layout, Menu, Card } from "antd";
 import styled from "styled-components";
 import {
   MenuUnfoldOutlined,
@@ -8,11 +9,23 @@ import {
   VideoCameraOutlined,
   UploadOutlined,
 } from "@ant-design/icons";
+import ContentLayout from "../ContentLayout";
+import Report from "../../components/Report/Report";
+import Profile from "../../components/Profile/Profile";
+
+import "../../App.css";
 
 const { Header, Sider, Content } = Layout;
 
+const { Meta } = Card;
+
 const StyleLayout = styled(Layout)`
   min-height: 100vh;
+`;
+
+const StyledMenu = styled(Menu)`
+  position: absolute;
+  top: 60px;
 `;
 
 class SiderDemo extends React.Component {
@@ -31,20 +44,20 @@ class SiderDemo extends React.Component {
       <StyleLayout>
         <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
           <div className="logo" />
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
+          <StyledMenu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
             <Menu.Item key="1">
               <UserOutlined />
-              <span>Dashboard</span>
+              <Link to="/">Dashboard</Link>
             </Menu.Item>
             <Menu.Item key="2">
               <VideoCameraOutlined />
-              <span>Reports</span>
+              <Link to="/report">Reports</Link>
             </Menu.Item>
             <Menu.Item key="3">
               <UploadOutlined />
-              <span>Profile</span>
+              <Link to="/profile">Profile</Link>
             </Menu.Item>
-          </Menu>
+          </StyledMenu>
         </Sider>
         <Layout className="site-layout">
           <Header className="site-layout-background" style={{ padding: 0 }}>
@@ -56,16 +69,17 @@ class SiderDemo extends React.Component {
               }
             )}
           </Header>
-          <Content
-            className="site-layout-background"
-            style={{
-              margin: "24px 16px",
-              padding: 24,
-              minHeight: 280,
-            }}
-          >
-            Content
-          </Content>
+          <Switch>
+            <Route exact path="/">
+              <ContentLayout />
+            </Route>
+            <Route path="/report">
+              <Report />
+            </Route>
+            <Route path="/profile">
+              <Profile />
+            </Route>
+          </Switch>
         </Layout>
       </StyleLayout>
     );
