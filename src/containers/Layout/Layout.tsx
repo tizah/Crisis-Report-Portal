@@ -9,7 +9,7 @@ import {
   VideoCameraOutlined,
   UploadOutlined,
 } from "@ant-design/icons";
-import ContentLayout from "../ContentLayout";
+import Dashboard from "../Dashboard";
 import Report from "../../components/Report/Report";
 import Profile from "../../components/Profile/Profile";
 
@@ -19,7 +19,7 @@ const { Header, Sider, Content } = Layout;
 
 const { Meta } = Card;
 
-const StyleLayout = styled(Layout)`
+export const StyleLayout = styled(Layout)`
   min-height: 100vh;
 `;
 
@@ -47,7 +47,7 @@ class SiderDemo extends React.Component {
           <StyledMenu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
             <Menu.Item key="1">
               <UserOutlined />
-              <Link to="/">Dashboard</Link>
+              <Link to="/dashboard">Dashboard</Link>
             </Menu.Item>
             <Menu.Item key="2">
               <VideoCameraOutlined />
@@ -70,8 +70,8 @@ class SiderDemo extends React.Component {
             )}
           </Header>
           <Switch>
-            <Route exact path="/">
-              <ContentLayout />
+            <Route exact path="/dashboard">
+              <Dashboard />
             </Route>
             <Route path="/report">
               <Report />

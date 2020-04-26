@@ -5,7 +5,7 @@ const { Content } = Layout;
 
 const { Meta } = Card;
 
-const ContentLayout = () => {
+const Dashboard = () => {
   return (
     <Content
       className="site-layout-background"
@@ -31,4 +31,4 @@ const ContentLayout = () => {
   );
 };
 
-export default ContentLayout;
+export default Dashboard;
